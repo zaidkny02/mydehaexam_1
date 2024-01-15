@@ -1,0 +1,7 @@
+The "TransformWebConfig" task failed unexpectedly.
+System.Exception: The acceptable value for AspNetCoreHostingModel property is either "InProcess" or "OutOfProcess".
+   at Microsoft.NET.Sdk.Publish.Tasks.WebConfigTransform.SetAspNetCoreHostingModel(String aspNetCoreHostingModelValue, String aspNetCoreModuleName, XElement aspNetCoreElement)
+   at Microsoft.NET.Sdk.Publish.Tasks.WebConfigTransform.Transform(XDocument webConfig, String appName, Boolean configureForAzure, Boolean useAppHost, String extension, String aspNetCoreModuleName, String aspNetCoreHostingModel, String environmentName, String projectFullPath)
+   at Microsoft.NET.Sdk.Publish.Tasks.TransformWebConfig.Execute()
+   at Microsoft.Build.BackEnd.TaskExecutionHost.Microsoft.Build.BackEnd.ITaskExecutionHost.Execute()
+   at Microsoft.Build.BackEnd.TaskBuilder.<ExecuteInstantiatedTask>d__26.MoveNext()
