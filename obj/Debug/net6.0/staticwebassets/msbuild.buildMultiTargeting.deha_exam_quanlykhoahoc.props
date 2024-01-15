@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\deha_exam_quanlykhoahoc.props" />
+</Project>
