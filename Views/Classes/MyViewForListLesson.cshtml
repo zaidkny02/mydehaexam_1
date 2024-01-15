@@ -1,0 +1,56 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "";
+}
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+@model X.PagedList.IPagedList<deha_exam_quanlykhoahoc.ViewModels.LessonViewModel>
+@if (@Model.Count() > 0)
+{
+    <div class="row" >
+        <div class="row">
+        @foreach (var item in Model)
+        {
+        <div class="col-sm-4">
+            <div class="card" style="max-height:400px;">
+                        <div class="card-header text-center bg-white" style="min-height:100px; background: linear-gradient(#d70018 0%,#ff8a97) ">
+                    <h6 class="card-title mylongparagraph" >@item.Title</h6>
+                </div>
+                <div class="card-body">
+                        <h7 class="card-title">Introduction: @item.Introduction</h7>
+                        <p class="card-text">Date: @item.DateCreated</p>
+                </div>
+                <div class="card-footer">
+                        <a class="btn btn-link" asp-action="Details" asp-controller="Lessons"  asp-route-id="@item.Id">Details</a>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+   <!---<table style="border-collapse: separate;  border-spacing: 0 1em;">
+
+        <tr>
+            <th>@Html.DisplayNameFor(model => Model[0].Title)</th>
+            <th>@Html.DisplayNameFor(model => Model[0].Introduction)</th>
+            <th>@Html.DisplayNameFor(model => Model[0].DateCreated)</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td class="mylongparagraph">@item.Introduction</td>
+                <td>@item.DateCreated</td>
+                <td><a asp-action="Details" asp-controller="Lessons" asp-route-id="@item.Id">Detail</a> </td>
+            </tr>
+        }
+    </table>   -->
+    <div class="pagination-container">
+        @Html.PagedListPager(Model,page => Url.Action("ListLesson","Classes",new {page=page,classid=Model[0].ClassID}, null),
+    new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded })
+
+    </div>
+    </div>
+}

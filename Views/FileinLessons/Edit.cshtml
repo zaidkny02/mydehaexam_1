@@ -1,0 +1,52 @@
+﻿@model deha_exam_quanlykhoahoc.ViewModels.FileInLessonModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>FileinLesson</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group" style="display:none;">
+                <label asp-for="name" class="control-label"></label>
+                <input asp-for="name" class="form-control" value="@Model.name" />
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div> 
+            <div class="form-group" style="display:none;">
+                <label asp-for="filePath" class="control-label"></label>
+                <input asp-for="filePath" class="form-control" value="@Model.filePath" />
+                <span asp-validation-for="filePath" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="display:none;">
+                <label asp-for="LessonID" class="control-label"></label>
+                <input asp-for="LessonID" class="form-control" value="@Model.LessonID" />
+                <span asp-validation-for="LessonID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Current File:</label>
+                <a asp-action="Download" asp-controller="FileinLessons" asp-route-fileId="@Model.Id">@Model.name</a>
+            </div>
+            <div class="form-group">
+                <label asp-for="file" class="control-label"></label>
+                <input asp-for="file" type="file" required="required" />
+                <!--   <select asp-for="ClassID" class ="form-control" asp-items="ViewBag.ClassID"></select> -->
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-controller="Lessons" asp-route-id="@Model.LessonID">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

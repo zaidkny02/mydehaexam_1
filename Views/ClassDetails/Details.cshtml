@@ -1,0 +1,72 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<deha_exam_quanlykhoahoc.Models.ClassDetail>
+
+@{
+    ViewData["Title"] = "Class Details";
+    var message = TempData["Message"] as string;
+}
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <div class="alert alert-info">
+        @message
+    </div>
+}
+
+
+<h2>Teacher: @ViewBag.teachername</h2>
+
+<h3>List student in class</h3>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => Model[0].User.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model[0].User.Dob)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model[0].User.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Dob)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Email)
+                </td>
+                @if (ViewBag.Master != null)
+                {
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>  
+                    </td>
+                }
+                <td>
+                   
+             <!--      <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                           <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>  -->
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if(@ViewBag.classid != null)
+{
+    <div>
+        <a asp-action="Details" class="btn btn-primary" asp-controller="Classes" asp-route-id="@ViewBag.classid">Back to class</a>
+    </div>
+}
